@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essam Suliman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a1d29;
+            --charcoal: #2d3748;
+            --electric-blue: #3b82f6;
+            --cyan: #06b6d4;
+            --gold: #f59e0b;
+            --light-gray: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .font-display { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--electric-blue), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--electric-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--electric-blue), var(--cyan));
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-20 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="font-display font-bold text-xl gradient-text">Essam Suliman</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-blue-400">Home</a>
+                    <a href="about.html" class="nav-link text-blue-400">About</a>
+                    <a href="projects.html" class="nav-link text-white hover:text-blue-400">Projects</a>
+                    <a href="contact.html" class="nav-link text-white hover:text-blue-400">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="section-fade">
+                    <h1 class="font-display font-black text-5xl md:text-6xl mb-6 gradient-text">About Me</h1>
+                    <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                        I'm a passionate Data Analyst with expertise in transforming complex datasets into actionable business insights. 
+                        My approach combines technical proficiency with strategic thinking to drive data-driven decision making.
+                    </p>
+                    <p class="text-lg text-gray-400 mb-8 leading-relaxed">
+                        Based in Kuala Lumpur, I specialize in exploratory data analysis, business intelligence, and statistical computing. 
+                        I believe in the power of data to tell compelling stories and drive meaningful business outcomes.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-gray-800 bg-opacity-50 px-4 py-2 rounded-lg border border-gray-700">
+                            <span class="font-semibold text-blue-400">Location:</span> Kuala Lumpur, Malaysia
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 px-4 py-2 rounded-lg border border-gray-700">
+                            <span class="font-semibold text-blue-400">Experience:</span> 1+ Years
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 px-4 py-2 rounded-lg border border-gray-700">
+                            <span class="font-semibold text-blue-400">Education:</span> BSc in Progress
+                        </div>
+                    </div>
+                </div>
+                <div class="section-fade">
+                    <div class="relative">
+                        <img src="resources/about-visual.png" alt="About Visual" class="w-full h-auto rounded-2xl shadow-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-2xl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Competencies -->
+    <section class="py-20 section-fade">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 gradient-text">Core Competencies</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Specialized skills in data analytics, business intelligence, and statistical computing
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Technical Skills -->
+                <div class="bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700 card-hover">
+                    <h3 class="font-display font-bold text-2xl mb-6 text-blue-400">Technical Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Python (Pandas, NumPy, Matplotlib)</span>
+                                <span class="text-blue-400">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">SQL (SQL Server, MySQL, PostgreSQL)</span>
+                                <span class="text-blue-400">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Tableau & Power BI</span>
+                                <span class="text-blue-400">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Excel & Advanced Analytics</span>
+                                <span class="text-blue-400">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">R Programming (dplyr, ggplot)</span>
+                                <span class="text-blue-400">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Analytical Skills -->
+                <div class="bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700 card-hover">
+                    <h3 class="font-display font-bold text-2xl mb-6 text-green-400">Analytical Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Exploratory Data Analysis (EDA)</span>
+                                <span class="text-green-400">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Statistical Analysis</span>
+                                <span class="text-green-400">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Data Visualization</span>
+                                <span class="text-green-400">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Business Intelligence</span>
+                                <span class="text-green-400">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="78" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-semibold">Market Research Analytics</span>
+                                <span class="text-green-400">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section class="py-20 section-fade">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 gradient-text">Education & Certifications</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Continuous learning and professional development in data analytics and business intelligence
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Education -->
+                <div class="bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700 card-hover">
+                    <h3 class="font-display font-bold text-2xl mb-6 text-purple-400">Education</h3>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-purple-400 pl-6">
+                            <h4 class="font-bold text-lg mb-2">Bachelor of Advertising in Digital Marketing Communication</h4>
+                            <p class="text-purple-400 mb-2">Greenwich University</p>
+                            <p class="text-gray-400 text-sm">Present - In Progress</p>
+                            <p class="text-gray-300 mt-3">
+                                Comprehensive program covering digital marketing strategies, data-driven decision making, 
+                                and analytical approaches to marketing communication.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certifications -->
+                <div class="bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700 card-hover">
+                    <h3 class="font-display font-bold text-2xl mb-6 text-yellow-400">Certifications</h3>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-yellow-400 pl-6">
+                            <h4 class="font-bold text-lg mb-2">Advanced Google Data Analytics Professional Certificate</h4>
+                            <p class="text-yellow-400 mb-2">Google</p>
+                            <p class="text-gray-400 text-sm">Present - In Progress</p>
+                            <p class="text-gray-300 mt-3">
+                                Advanced certification covering statistical analysis, data visualization, 
+                                and business intelligence methodologies.
+                            </p>
+                        </div>
+                        <div class="border-l-4 border-yellow-400 pl-6">
+                            <h4 class="font-bold text-lg mb-2">Google Data Analytics Professional Certificate</h4>
+                            <p class="text-yellow-400 mb-2">Google</p>
+                            <p class="text-gray-400 text-sm">Completed June 2024</p>
+                            <p class="text-gray-300 mt-3">
+                                Comprehensive foundation in data analytics including SQL, Python, 
+                                Tableau, and statistical analysis techniques.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Philosophy -->
+    <section class="py-20 section-fade">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-display font-bold text-4xl md:text-5xl mb-8 gradient-text">Professional Philosophy</h2>
+            <div class="bg-gray-800 bg-opacity-30 rounded-2xl p-12 border border-gray-700">
+                <blockquote class="text-2xl text-gray-300 mb-8 italic leading-relaxed">
+                    "Data is not just numbers and statistics—it's the voice of your business telling you what's working, 
+                    what's not, and where the opportunities lie. My role is to listen to that voice and translate it into 
+                    actionable insights that drive meaningful business outcomes."
+                </blockquote>
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">📊</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Data-Driven</h3>
+                        <p class="text-gray-400">Every decision backed by solid evidence and statistical analysis</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Result-Oriented</h3>
+                        <p class="text-gray-400">Focus on delivering measurable business impact and ROI</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🚀</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Innovation-Driven</h3>
+                        <p class="text-gray-400">Continuously exploring new tools and methodologies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 section-fade">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 gradient-text">Ready to Collaborate?</h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                Let's discuss how we can leverage data analytics to drive your business forward and achieve your strategic objectives.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-gradient-to-r from-blue-600 to-cyan-400 px-8 py-4 rounded-lg font-semibold text-white inline-block hover:shadow-lg transition-all duration-300">
+                    Get In Touch
+                </a>
+                <a href="projects.html" class="border-2 border-blue-400 px-8 py-4 rounded-lg font-semibold text-blue-400 hover:bg-blue-400 hover:text-white transition-all duration-300">
+                    View My Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="font-display font-bold text-2xl gradient-text mb-4">Essam Suliman</div>
+            <p class="text-gray-400 mb-6">Data Analyst & Business Intelligence Specialist</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="mailto:essamsuliman02@gmail.com" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/essam-suliman" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://sites.google.com/view/essam-suliman/home" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-gray-500 text-sm">
+                © 2025 Essam Suliman. All rights reserved. | Kuala Lumpur, Malaysia
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Animate skill bars
+                        const skillBars = entry.target.querySelectorAll('.skill-progress');
+                        skillBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, 300);
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.section-fade').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    alert('Mobile menu functionality would be implemented here');
+                });
+            }
+        });
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essam Suliman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #1a1d29;
+            --charcoal: #2d3748;
+            --electric-blue: #3b82f6;
+            --cyan: #06b6d4;
+            --gold: #f59e0b;
+            --light-gray: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .font-display { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--electric-blue), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--electric-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .project-card {
+            background: rgba(45, 55, 72, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--charcoal);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--electric-blue);
+        }
+        
+        .filter-btn.active {
+            background: var(--electric-blue) !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-20 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="font-display font-bold text-xl gradient-text">Essam Suliman</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-blue-400">Home</a>
+                    <a href="about.html" class="nav-link text-white hover:text-blue-400">About</a>
+                    <a href="projects.html" class="nav-link text-blue-400">Projects</a>
+                    <a href="contact.html" class="nav-link text-white hover:text-blue-400">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h1 class="font-display font-black text-5xl md:text-6xl mb-6 gradient-text">My Projects</h1>
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Comprehensive data analytics projects showcasing technical expertise, business impact, and innovative solutions 
+                to real-world challenges across various industries and use cases.
+            </p>
+            
+            <!-- Project Filter -->
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+                <button class="filter-btn active px-6 py-3 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all" data-filter="all">All Projects</button>
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-700 text-gray-300 font-medium hover:bg-gray-600 transition-all" data-filter="python">Python</button>
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-700 text-gray-300 font-medium hover:bg-gray-600 transition-all" data-filter="sql">SQL</button>
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-700 text-gray-300 font-medium hover:bg-gray-600 transition-all" data-filter="tableau">Tableau</button>
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-700 text-gray-300 font-medium hover:bg-gray-600 transition-all" data-filter="eda">EDA</button>
+                <button class="filter-btn px-6 py-3 rounded-full bg-gray-700 text-gray-300 font-medium hover:bg-gray-600 transition-all" data-filter="business">Business Intelligence</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="pb-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-8" id="projects-grid">
+                <!-- Project 1: EDA with Python -->
+                <div class="project-card card-hover rounded-2xl p-8 project-item" data-category="python eda">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mr-6">
+                            <span class="text-white font-bold text-2xl">📊</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-2xl mb-2">Exploratory Data Analysis</h3>
+                            <p class="text-blue-400">Python • Pandas • Matplotlib • Seaborn</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <img src="https://kimi-web-img.moonshot.cn/img/www.altexsoft.com/45e4673c03bc0f7496f9cb1f213a34e2f7b0e417.png" alt="EDA Visualization" class="w-full h-48 object-cover rounded-lg mb-4">
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Comprehensive EDA project analyzing complex datasets to extract actionable insights. Delivered data-driven recommendations 
+                        that improved operational efficiency by 25% and identified key growth opportunities through statistical analysis and visualization.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-blue-400">25%</div>
+                            <div class="text-sm text-gray-400">Efficiency Improvement</div>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-green-400">15+</div>
+                            <div class="text-sm text-gray-400">Key Insights Identified</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-green-600 text-white text-sm rounded-full">Pandas</span>
+                        <span class="px-3 py-1 bg-purple-600 text-white text-sm rounded-full">Matplotlib</span>
+                        <span class="px-3 py-1 bg-orange-600 text-white text-sm rounded-full">EDA</span>
+                        <span class="px-3 py-1 bg-red-600 text-white text-sm rounded-full">Statistical Analysis</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-400">August 2025</div>
+                        <button class="text-blue-400 hover:text-blue-300 font-medium view-details" data-project="eda">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Cyclistic Bike Share -->
+                <div class="project-card card-hover rounded-2xl p-8 project-item" data-category="python sql business">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center mr-6">
+                            <span class="text-white font-bold text-2xl">🚲</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-2xl mb-2">Cyclistic Bike-Share Analysis</h3>
+                            <p class="text-green-400">Python • SQL • Data Analysis • Business Intelligence</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <img src="https://kimi-web-img.moonshot.cn/img/dashthis.com/d815380c5d32145e08f5cc94f7b3277d9f1694e6.png" alt="Bike Share Dashboard" class="w-full h-48 object-cover rounded-lg mb-4">
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Analyzed one year of bike-share trip data to uncover behavioral differences between casual riders and annual members. 
+                        Identified marketing opportunities that increased membership conversions by 30% through targeted campaigns and data-driven recommendations.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-green-400">30%</div>
+                            <div class="text-sm text-gray-400">Membership Increase</div>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-blue-400">1M+</div>
+                            <div class="text-sm text-gray-400">Trips Analyzed</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-red-600 text-white text-sm rounded-full">SQL</span>
+                        <span class="px-3 py-1 bg-green-600 text-white text-sm rounded-full">Data Analysis</span>
+                        <span class="px-3 py-1 bg-yellow-600 text-white text-sm rounded-full">Business Intelligence</span>
+                        <span class="px-3 py-1 bg-purple-600 text-white text-sm rounded-full">Market Research</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-400">May 2025</div>
+                        <button class="text-blue-400 hover:text-blue-300 font-medium view-details" data-project="bike">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Marketing Analytics Dashboard -->
+                <div class="project-card card-hover rounded-2xl p-8 project-item" data-category="python tableau business">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center mr-6">
+                            <span class="text-white font-bold text-2xl">📈</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-2xl mb-2">Marketing Analytics Dashboard</h3>
+                            <p class="text-purple-400">Excel • Python • Dashboard • KPI Tracking</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <img src="https://kimi-web-img.moonshot.cn/img/public.tableau.com/e669bf40111a3e83080740c82af49eee0fad88b9.png" alt="Marketing Dashboard" class="w-full h-48 object-cover rounded-lg mb-4">
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Built comprehensive performance dashboards tracking KPIs, stock trading statistics, and campaign effectiveness. 
+                        Conducted EDA to identify patterns and support data-driven decision making across multiple departments.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-purple-400">12</div>
+                            <div class="text-sm text-gray-400">KPIs Tracked</div>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-green-400">95%</div>
+                            <div class="text-sm text-gray-400">Accuracy Rate</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-green-600 text-white text-sm rounded-full">Excel</span>
+                        <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-purple-600 text-white text-sm rounded-full">Dashboard</span>
+                        <span class="px-3 py-1 bg-orange-600 text-white text-sm rounded-full">KPIs</span>
+                        <span class="px-3 py-1 bg-red-600 text-white text-sm rounded-full">Performance</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-400">Dec 2024 - Mar 2025</div>
+                        <button class="text-blue-400 hover:text-blue-300 font-medium view-details" data-project="dashboard">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Sales Performance Optimization -->
+                <div class="project-card card-hover rounded-2xl p-8 project-item" data-category="sql tableau business">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-orange-600 rounded-xl flex items-center justify-center mr-6">
+                            <span class="text-white font-bold text-2xl">💰</span>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-2xl mb-2">Sales Performance Optimization</h3>
+                            <p class="text-orange-400">Data Analysis • Inventory • Efficiency • Business Intelligence</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <img src="https://kimi-web-img.moonshot.cn/img/thebhwgroup.com/2cb6ec8df2676a2ccc280184d188ed94c6cd21f2.jpg" alt="Sales Analytics" class="w-full h-48 object-cover rounded-lg mb-4">
+                    </div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Improved inventory efficiency by 20% through comprehensive sales and stock data analysis. Provided actionable insights 
+                        that reduced overstock and accelerated product turnover, resulting in significant cost savings and operational improvements.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-orange-400">20%</div>
+                            <div class="text-sm text-gray-400">Efficiency Gain</div>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                            <div class="text-2xl font-bold text-green-400">$50K</div>
+                            <div class="text-sm text-gray-400">Cost Savings</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-red-600 text-white text-sm rounded-full">SQL</span>
+                        <span class="px-3 py-1 bg-purple-600 text-white text-sm rounded-full">Tableau</span>
+                        <span class="px-3 py-1 bg-green-600 text-white text-sm rounded-full">Inventory</span>
+                        <span class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full">Efficiency</span>
+                        <span class="px-3 py-1 bg-yellow-600 text-white text-sm rounded-full">Cost Reduction</span>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-400">Feb - Aug 2024</div>
+                        <button class="text-blue-400 hover:text-blue-300 font-medium view-details" data-project="sales">
+                            View Details →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Statistics -->
+    <section class="py-20 section-fade">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 gradient-text">Project Impact</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Measurable results and business outcomes from data analytics initiatives
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700">
+                    <div class="text-4xl font-bold text-blue-400 mb-4">4+</div>
+                    <div class="text-lg font-semibold mb-2">Projects Completed</div>
+                    <div class="text-gray-400">Real-world applications</div>
+                </div>
+                <div class="text-center bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700">
+                    <div class="text-4xl font-bold text-green-400 mb-4">30%</div>
+                    <div class="text-lg font-semibold mb-2">Average Improvement</div>
+                    <div class="text-gray-400">Business efficiency gains</div>
+                </div>
+                <div class="text-center bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700">
+                    <div class="text-4xl font-bold text-purple-400 mb-4">1M+</div>
+                    <div class="text-lg font-semibold mb-2">Data Points</div>
+                    <div class="text-gray-400">Analyzed across projects</div>
+                </div>
+                <div class="text-center bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700">
+                    <div class="text-4xl font-bold text-orange-400 mb-4">95%</div>
+                    <div class="text-lg font-semibold mb-2">Accuracy Rate</div>
+                    <div class="text-gray-400">Data analysis precision</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 section-fade">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 gradient-text">Interested in Collaboration?</h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                Let's discuss how we can apply these data analytics approaches to solve your business challenges and drive measurable results.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="bg-gradient-to-r from-blue-600 to-cyan-400 px-8 py-4 rounded-lg font-semibold text-white inline-block hover:shadow-lg transition-all duration-300">
+                    Start a Project
+                </a>
+                <a href="about.html" class="border-2 border-blue-400 px-8 py-4 rounded-lg font-semibold text-blue-400 hover:bg-blue-400 hover:text-white transition-all duration-300">
+                    Learn More About Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="modal-title" class="font-display font-bold text-2xl gradient-text"></h2>
+                <button id="close-modal" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div id="modal-body" class="text-gray-300">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="font-display font-bold text-2xl gradient-text mb-4">Essam Suliman</div>
+            <p class="text-gray-400 mb-6">Data Analyst & Business Intelligence Specialist</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="mailto:essamsuliman02@gmail.com" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/essam-suliman" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://sites.google.com/view/essam-suliman/home" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="text-gray-500 text-sm">
+                © 2025 Essam Suliman. All rights reserved. | Kuala Lumpur, Malaysia
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Project details data
+        const projectDetails = {
+            eda: {
+                title: "Exploratory Data Analysis Project",
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-400 mb-3">Project Overview</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                This comprehensive EDA project involved analyzing complex business datasets to uncover hidden patterns, 
+                                identify anomalies, and extract actionable insights. The project demonstrated advanced data analysis 
+                                techniques using Python's ecosystem including Pandas for data manipulation, Matplotlib and Seaborn 
+                                for visualization, and statistical methods for hypothesis testing.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-green-400 mb-3">Key Achievements</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Improved operational efficiency by 25% through data-driven recommendations</li>
+                                <li>Identified 15+ key business insights leading to strategic improvements</li>
+                                <li>Developed automated reporting system reducing analysis time by 60%</li>
+                                <li>Created interactive visualizations for stakeholder presentations</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-3">Technical Implementation</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Data Processing</h4>
+                                    <p class="text-sm text-gray-400">Pandas, NumPy for data cleaning and transformation</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Visualization</h4>
+                                    <p class="text-sm text-gray-400">Matplotlib, Seaborn for statistical plotting</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Statistical Analysis</h4>
+                                    <p class="text-sm text-gray-400">SciPy for hypothesis testing and correlation analysis</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Reporting</h4>
+                                    <p class="text-sm text-gray-400">Jupyter Notebooks for reproducible analysis</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            bike: {
+                title: "Cyclistic Bike-Share Analysis",
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-400 mb-3">Project Overview</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Analyzed one year of bike-share trip data to understand behavioral differences between casual riders 
+                                and annual members. This comprehensive case study involved data from over 1 million trips, providing 
+                                insights for marketing strategies and membership conversion optimization.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-green-400 mb-3">Business Impact</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Increased membership conversions by 30% through targeted marketing campaigns</li>
+                                <li>Identified peak usage patterns optimizing bike distribution and availability</li>
+                                <li>Developed customer segmentation strategies for personalized offerings</li>
+                                <li>Reduced operational costs by 15% through efficiency improvements</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-3">Methodology</h3>
+                            <div class="space-y-4">
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Data Collection & Preparation</h4>
+                                    <p class="text-sm text-gray-400">Processed 1M+ trip records, cleaned missing values, standardized formats</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Exploratory Analysis</h4>
+                                    <p class="text-sm text-gray-400">User behavior patterns, trip duration analysis, seasonal trends</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Statistical Testing</h4>
+                                    <p class="text-sm text-gray-400">Hypothesis testing for member vs casual rider differences</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            dashboard: {
+                title: "Marketing Analytics Dashboard",
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-400 mb-3">Project Overview</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Developed comprehensive marketing analytics dashboards for Dr Avi Global, tracking KPIs across multiple 
+                                departments including marketing campaigns, AI model performance, and stock trading statistics. 
+                                The solution provided real-time insights and automated reporting capabilities.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-green-400 mb-3">Key Features</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>Real-time KPI tracking across 12 key performance indicators</li>
+                                <li>Automated data processing reducing manual work by 80%</li>
+                                <li>Interactive visualizations for stakeholder presentations</li>
+                                <li>Cross-departmental data integration and analysis</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-3">Technical Stack</h3>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4 text-center">
+                                    <h4 class="font-semibold mb-2 text-blue-400">Backend</h4>
+                                    <p class="text-sm text-gray-400">Python, Pandas</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4 text-center">
+                                    <h4 class="font-semibold mb-2 text-green-400">Frontend</h4>
+                                    <p class="text-sm text-gray-400">Excel, Power BI</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4 text-center">
+                                    <h4 class="font-semibold mb-2 text-purple-400">Data Sources</h4>
+                                    <p class="text-sm text-gray-400">SQL, APIs, CSV</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            sales: {
+                title: "Sales Performance Optimization",
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-blue-400 mb-3">Project Overview</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Conducted comprehensive sales and inventory data analysis for Thebigbang.shop, resulting in 20% improvement 
+                                in inventory efficiency and $50K in cost savings. The project involved analyzing sales patterns, 
+                                stock levels, and customer behavior to optimize operational processes.
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-green-400 mb-3">Results Achieved</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                <li>20% improvement in inventory efficiency through data-driven optimization</li>
+                                <li>$50,000 annual cost savings from reduced overstock and improved turnover</li>
+                                <li>15% reduction in stock-out incidents through predictive analysis</li>
+                                <li>Improved customer satisfaction through better product availability</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-3">Analysis Framework</h3>
+                            <div class="space-y-4">
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Sales Pattern Analysis</h4>
+                                    <p class="text-sm text-gray-400">Seasonal trends, product performance, customer segmentation</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Inventory Optimization</h4>
+                                    <p class="text-sm text-gray-400">Stock level optimization, reorder point calculation, turnover analysis</p>
+                                </div>
+                                <div class="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                                    <h4 class="font-semibold mb-2">Cost-Benefit Analysis</h4>
+                                    <p class="text-sm text-gray-400">ROI calculations, cost reduction opportunities, efficiency metrics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProjectFilters();
+            initializeScrollAnimations();
+            initializeModals();
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    alert('Mobile menu functionality would be implemented here');
+                });
+            }
+        });
+
+        // Project filtering system
+        function initializeProjectFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-blue-600', 'text-white');
+                        btn.classList.add('bg-gray-700', 'text-gray-300');
+                    });
+                    
+                    this.classList.add('active', 'bg-blue-600', 'text-white');
+                    this.classList.remove('bg-gray-700', 'text-gray-300');
+                    
+                    // Filter projects with animation
+                    projectItems.forEach((item, index) => {
+                        const categories = item.getAttribute('data-category').split(' ');
+                        const shouldShow = filter === 'all' || categories.includes(filter);
+                        
+                        if (shouldShow) {
+                            anime({
+                                targets: item,
+                                opacity: [0, 1],
+                                scale: [0.8, 1],
+                                translateY: [20, 0],
+                                delay: index * 100,
+                                duration: 600,
+                                easing: 'easeOutQuart'
+                            });
+                            item.style.display = 'block';
+                        } else {
+                            anime({
+                                targets: item,
+                                opacity: 0,
+                                scale: 0.8,
+                                translateY: -20,
+                                duration: 300,
+                                easing: 'easeInQuart',
+                                complete: function() {
+                                    item.style.display = 'none';
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        }
+
+        // Initialize modals
+        function initializeModals() {
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const closeBtn = document.getElementById('close-modal');
+            const detailButtons = document.querySelectorAll('.view-details');
+            
+            detailButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const projectKey = this.getAttribute('data-project');
+                    const projectData = projectDetails[projectKey];
+                    
+                    if (projectData) {
+                        modalTitle.textContent = projectData.title;
+                        modalBody.innerHTML = projectData.content;
+                        modal.style.display = 'block';
+                        
+                        // Animate modal appearance
+                        anime({
+                            targets: '.modal-content',
+                            scale: [0.8, 1],
+                            opacity: [0, 1],
+                            duration: 300,
+                            easing: 'easeOutQuart'
+                        });
+                    }
+                });
+            });
+            
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            function closeModal() {
+                anime({
+                    targets: '.modal-content',
+                    scale: [1, 0.8],
+                    opacity: [1, 0],
+                    duration: 200,
+                    easing: 'easeInQuart',
+                    complete: function() {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Scroll animations
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.section-fade').forEach(el => {
+                observer.observe(el);
+            });
+        }
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>
