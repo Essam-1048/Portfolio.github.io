@@ -165,7 +165,7 @@
                     <div class="contact-card rounded-2xl p-8">
                         <h2 class="font-display font-bold text-3xl mb-8 gradient-text">Send a Message</h2>
                         
-                        <form id="contact-form" class="space-y-6">
+                        <form id="contact-form" action="https://formspree.io/f/xrbyvadg" method="POST" class="space-y-6">
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div>
                                     <label for="firstName" class="block text-sm font-semibold mb-2 text-gray-300">First Name</label>
@@ -540,54 +540,39 @@
         
         // Form submission
         function submitForm(data) {
-            const submitBtn = document.querySelector('#contact-form button[type="submit"]');
-            const successMessage = document.querySelector('.success-message');
-            const errorMessage = document.querySelector('.error-message');
-            
-            // Show loading state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            // Hide previous messages
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            // Simulate form submission (replace with actual endpoint)
-            setTimeout(() => {
-                // Simulate success
-                const success = Math.random() > 0.1; // 90% success rate for demo
-                
-                if (success) {
-                    successMessage.style.display = 'block';
-                    document.getElementById('contact-form').reset();
-                    
-                    // Animate success message
-                    anime({
-                        targets: successMessage,
-                        opacity: [0, 1],
-                        translateY: [-20, 0],
-                        duration: 500,
-                        easing: 'easeOutQuart'
-                    });
-                } else {
-                    errorMessage.style.display = 'block';
-                    
-                    // Animate error message
-                    anime({
-                        targets: errorMessage,
-                        opacity: [0, 1],
-                        translateY: [-20, 0],
-                        duration: 500,
-                        easing: 'easeOutQuart'
-                    });
-                }
-                
-                // Reset button
-                submitBtn.textContent = 'Send Message';
-                submitBtn.disabled = false;
-            }, 2000);
+    const form = document.getElementById('contact-form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const successMessage = document.querySelector('.success-message');
+    const errorMessage = document.querySelector('.error-message');
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    successMessage.style.display = 'none';
+    errorMessage.style.display = 'none';
+
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if (response.ok) {
+            successMessage.style.display = 'block';
+            form.reset();
+        } else {
+            errorMessage.style.display = 'block';
         }
-        
+    })
+    .catch(() => {
+        errorMessage.style.display = 'block';
+    })
+    .finally(() => {
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+    });
+}
+
         // Scroll animations
         function initializeScrollAnimations() {
             const observerOptions = {
