@@ -123,8 +123,8 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-20 backdrop-blur-md border-b border-gray-800">
+    <!-- Navigation v0 -->
+    <!-- <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-20 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="font-display font-bold text-xl gradient-text">Essam Suliman</div>
@@ -143,7 +143,36 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </nav> -->
+        <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-20 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <!-- Left logo -->
+      <div class="font-display font-bold text-xl gradient-text">Essam Suliman</div>
+
+      <!-- Center navigation links -->
+      <div class="hidden md:flex space-x-8 ml-8">
+        <a href="index.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Home</a>
+        <a href="about.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">About</a>
+        <a href="projects.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Projects</a>
+        <a href="contact.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Contact</a>
+      </div>
+
+      <!-- Right button -->
+      <div class="hidden md:flex items-center">
+        <a href="Essam_Suliman_Resume_2025.pdf" download target="_blank"
+           class="ml-6 inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold
+          text-white bg-gradient-to-r from-blue-500/70 to-cyan-400/70
+          border border-cyan-300/60 shadow-lg shadow-cyan-500/30
+          hover:from-blue-500 hover:to-cyan-400 hover:shadow-cyan-400/40
+          transition-all duration-300 backdrop-blur-sm">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full mr-2 shadow-[0_0_8px_2px_rgba(16,185,129,0.7)] animate-pulse"></span>
+          Download Resume
+        </a>
+      </div>      
+    </div>
+  </div>
+</nav>
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20">
@@ -339,44 +368,50 @@
             <div class="text-center mb-16">
                 <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 gradient-text">Frequently Asked Questions</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Common questions about collaboration and data analytics services
+                    Common questions to know more about me
                 </p>
             </div>
             
             <div class="space-y-6">
                 <div class="contact-card rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-3 text-blue-400">What types of data analytics projects do you work on?</h3>
-                    <p class="text-gray-300">
-                        I specialize in exploratory data analysis, business intelligence dashboards, statistical analysis, 
-                        and data visualization projects. This includes market research, performance optimization, 
-                        customer behavior analysis, and predictive modeling using Python, SQL, Tableau, and Power BI.
+                    <h3 class="font-bold text-lg mb-3 text-blue-400">Tell me a bit about yourself and what drew you to data analytics.</h3>
+                    <p style="text-align: justify;" class="text-gray-300">
+                        I originally come from a marketing background, where I developed a strong appreciation for how numbers can tell a story. 
+                        I enjoyed analyzing campaign results, audience behaviors, and engagement data, that’s really where my interest in insights 
+                        began. Over time, I realized that what I loved most wasn’t just the creative side of marketing, but the analytical process behind 
+                        understanding why something worked. 
+                        Around that same time, my brother, who’s already an expert in data analytics, became a huge source of inspiration. 
+                        Seeing how he could take raw data and turn it into clear, actionable strategies opened my eyes to the depth of the field. 
+                        It made me want to go beyond surface-level metrics and truly understand the patterns behind decision-making. 
+                        That’s what ultimately drew me to data analytics.
                     </p>
                 </div>
                 
                 <div class="contact-card rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-3 text-green-400">What's your typical project timeline?</h3>
-                    <p class="text-gray-300">
-                        Project timelines vary based on scope and complexity. Simple data analysis projects can be completed 
-                        in 1-2 weeks, while comprehensive business intelligence implementations may take 4-8 weeks. 
-                        I provide detailed timelines during the initial consultation phase.
+                    <h3 class="font-bold text-lg mb-3 text-green-400">What do you enjoy most about working with data?</h3>
+                    <p style="text-align: justify;" class="text-gray-300">
+                        The part I enjoy most when working with data is uncovering the mysteries hidden within the dataset I’m analyzing. There’s 
+                        something exciting about discovering patterns and stories that aren’t immediately visible.
                     </p>
                 </div>
                 
                 <div class="contact-card rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-3 text-purple-400">Do you work with international clients?</h3>
-                    <p class="text-gray-300">
-                        Yes, I work with clients globally and am experienced in remote collaboration. I'm based in Kuala Lumpur 
-                        (GMT+8) but am flexible with meeting times to accommodate different time zones. All deliverables 
-                        are provided digitally with clear documentation.
+                    <h3 class="font-bold text-lg mb-3 text-purple-400">How do you stay motivated when you face challenges or repetitive work?</h3>
+                    <p style="text-align: justify;" class="text-gray-300">
+                        Motivation helps, but I find discipline more effective. When faced with a big problem,
+                        I use root cause analysis to break it down into smaller, manageable parts. I believe motivation
+                         gives you short bursts of productivity,
+                          but discipline builds sustainable progress, which is the real key to success.
                     </p>
                 </div>
                 
                 <div class="contact-card rounded-xl p-6">
-                    <h3 class="font-bold text-lg mb-3 text-orange-400">What information do you need for a project quote?</h3>
-                    <p class="text-gray-300">
-                        To provide an accurate quote, I'll need details about your data sources, project objectives, 
-                        desired deliverables, timeline, and any specific tools or platforms you prefer. A brief 
-                        consultation call helps ensure we align on project scope and expectations.
+                    <h3 class="font-bold text-lg mb-3 text-orange-400">Where do you see yourself in the next few years?</h3>
+                    <p style="text-align: justify;" class="text-gray-300">
+                        With the company currently reading this👀. 
+                        On a serious note, I’m looking to grow into a strong data professional, gaining hands-on experience
+                        and continuously improving my technical and analytical skills. I want to contribute to meaningful projects,
+                        learn from experienced mentors, and eventually take on bigger responsibilities as I advance in my career.
                     </p>
                 </div>
             </div>
