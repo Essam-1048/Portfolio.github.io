@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Add click handlers for project detail buttons
-/*document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const detailButtons = document.querySelectorAll('.project-card button');
     
     detailButtons.forEach(button => {
@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(`Project Details: ${projectTitle}\n\nThis would open a detailed view of the project with:\n• Full project description\n• Technical implementation details\n• Data visualizations\n• Results and impact metrics\n• Code snippets and methodology`);
         });
     });
-});*/
+});
 
 // Performance optimization - reduce particle count on mobile
 function optimizeForMobile() {
