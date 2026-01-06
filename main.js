@@ -73,6 +73,8 @@ function initializeSkillsRadar() {
             }
         },
         radar: {
+            center: ['50%', '55%'], // Lower the chart slightly to give top labels room
+            radius: window.innerWidth < 768 ? '60%' : '75%', // Make chart smaller on mobile
             indicator: [
                 { name: 'Python', max: 100 },
                 { name: 'SQL', max: 100 },
@@ -87,23 +89,42 @@ function initializeSkillsRadar() {
             splitNumber: 4,
             axisName: {
                 color: '#ffffff',
-                fontSize: 12,
-                fontWeight: 'bold'
+                fontSize: window.innerWidth < 768 ? 10 : 12, // Smaller font on mobile
+                fontWeight: 'bold',
+                padding: [-10, -10] // Pulls labels slightly away from edges
             },
-            splitLine: {
-                lineStyle: {
-                    color: 'rgba(59, 130, 246, 0.3)'
-                }
-            },
-            splitArea: {
-                show: true,
-                areaStyle: {
-                    color: [
-                        'rgba(59, 130, 246, 0.1)',
-                        'rgba(59, 130, 246, 0.05)'
-                    ]
-                }
-            },
+        // radar: {
+        //     indicator: [
+        //         { name: 'Python', max: 100 },
+        //         { name: 'SQL', max: 100 },
+        //         { name: 'Tableau', max: 100 },
+        //         { name: 'Power BI', max: 100 },
+        //         { name: 'Excel', max: 100 },
+        //         { name: 'R Programming', max: 100 },
+        //         { name: 'EDA', max: 100 },
+        //         { name: 'Data Visualization', max: 100 }
+        //     ],
+        //     shape: 'polygon',
+        //     splitNumber: 4,
+        //     axisName: {
+        //         color: '#ffffff',
+        //         fontSize: 12,
+        //         fontWeight: 'bold'
+        //     },
+        //     splitLine: {
+        //         lineStyle: {
+        //             color: 'rgba(59, 130, 246, 0.3)'
+        //         }
+        //     },
+        //     splitArea: {
+        //         show: true,
+        //         areaStyle: {
+        //             color: [
+        //                 'rgba(59, 130, 246, 0.1)',
+        //                 'rgba(59, 130, 246, 0.05)'
+        //             ]
+        //         }
+        //     },
             axisLine: {
                 lineStyle: {
                     color: 'rgba(59, 130, 246, 0.5)'
