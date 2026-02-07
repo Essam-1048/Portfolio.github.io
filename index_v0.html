@@ -20,11 +20,14 @@
             --cyan: #06b6d4;
             --gold: #f59e0b;
             --light-gray: #f8fafc;
+            --bg-color: #121212;
+            --nm-light: #1d1d1d;
+            --nm-dark: #080808;
         }
         
         body {
             font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%);
+            background: #121212;
             color: white;
             overflow-x: hidden;
         }
@@ -77,9 +80,14 @@
         }
         
         .project-card {
-            background: rgba(45, 55, 72, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            background: #121212;
+            border-radius: 30px;
+            box-shadow: 8px 8px 16px var(--nm-dark), -8px -8px 16px var(--nm-light);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            box-shadow: inset 8px 8px 16px var(--nm-dark), inset -8px -8px 16px var(--nm-light);
         }
         
         .nav-link {
@@ -128,6 +136,12 @@
             opacity: 1;
             transform: translateY(0);
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav {
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(29, 29, 29, 0.5);
         }
     </style>
 </head>
