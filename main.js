@@ -73,6 +73,8 @@ function initializeSkillsRadar() {
             }
         },
         radar: {
+            center: ['50%', '55%'], // Lower the chart slightly to give top labels room
+            radius: window.innerWidth < 768 ? '60%' : '75%', // Make chart smaller on mobile
             indicator: [
                 { name: 'Python', max: 100 },
                 { name: 'SQL', max: 100 },
@@ -87,23 +89,42 @@ function initializeSkillsRadar() {
             splitNumber: 4,
             axisName: {
                 color: '#ffffff',
-                fontSize: 12,
-                fontWeight: 'bold'
+                fontSize: window.innerWidth < 768 ? 10 : 12, // Smaller font on mobile
+                fontWeight: 'bold',
+                padding: [-10, -10] // Pulls labels slightly away from edges
             },
-            splitLine: {
-                lineStyle: {
-                    color: 'rgba(59, 130, 246, 0.3)'
-                }
-            },
-            splitArea: {
-                show: true,
-                areaStyle: {
-                    color: [
-                        'rgba(59, 130, 246, 0.1)',
-                        'rgba(59, 130, 246, 0.05)'
-                    ]
-                }
-            },
+        // radar: {
+        //     indicator: [
+        //         { name: 'Python', max: 100 },
+        //         { name: 'SQL', max: 100 },
+        //         { name: 'Tableau', max: 100 },
+        //         { name: 'Power BI', max: 100 },
+        //         { name: 'Excel', max: 100 },
+        //         { name: 'R Programming', max: 100 },
+        //         { name: 'EDA', max: 100 },
+        //         { name: 'Data Visualization', max: 100 }
+        //     ],
+        //     shape: 'polygon',
+        //     splitNumber: 4,
+        //     axisName: {
+        //         color: '#ffffff',
+        //         fontSize: 12,
+        //         fontWeight: 'bold'
+        //     },
+        //     splitLine: {
+        //         lineStyle: {
+        //             color: 'rgba(59, 130, 246, 0.3)'
+        //         }
+        //     },
+        //     splitArea: {
+        //         show: true,
+        //         areaStyle: {
+        //             color: [
+        //                 'rgba(59, 130, 246, 0.1)',
+        //                 'rgba(59, 130, 246, 0.05)'
+        //             ]
+        //         }
+        //     },
             axisLine: {
                 lineStyle: {
                     color: 'rgba(59, 130, 246, 0.5)'
@@ -284,30 +305,20 @@ function initializeScrollAnimations() {
 // Mobile menu functionality
 function initializeMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const nav = document.querySelector('nav');
+    const mobileMenu = document.getElementById('mobile-menu');
     
-    if (mobileMenuBtn) {
+    if (mobileMenuBtn && mobileMenu) {
+        // Toggle menu when button is clicked
         mobileMenuBtn.addEventListener('click', function() {
-            // Create mobile menu if it doesn't exist
-            let mobileMenu = document.getElementById('mobile-menu');
-            if (!mobileMenu) {
-                mobileMenu = document.createElement('div');
-                mobileMenu.id = 'mobile-menu';
-                mobileMenu.className = 'md:hidden bg-gray-900 bg-opacity-95 backdrop-blur-md border-t border-gray-800';
-                mobileMenu.innerHTML = `
-                    <div class="px-6 py-4 space-y-4">
-                        <a href="#home" class="block text-white hover:text-blue-400 py-2">Home</a>
-                        <a href="#skills" class="block text-white hover:text-blue-400 py-2">Skills</a>
-                        <a href="#projects" class="block text-white hover:text-blue-400 py-2">Projects</a>
-                        <a href="#experience" class="block text-white hover:text-blue-400 py-2">Experience</a>
-                        <a href="contact.html" class="block text-white hover:text-blue-400 py-2">Contact</a>
-                    </div>
-                `;
-                nav.appendChild(mobileMenu);
-            }
-            
-            // Toggle menu
             mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close menu when a link inside the menu is clicked
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
         });
     }
 }
@@ -429,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Add click handlers for project detail buttons
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     const detailButtons = document.querySelectorAll('.project-card button');
     
     detailButtons.forEach(button => {
@@ -444,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(`Project Details: ${projectTitle}\n\nThis would open a detailed view of the project with:\n• Full project description\n• Technical implementation details\n• Data visualizations\n• Results and impact metrics\n• Code snippets and methodology`);
         });
     });
-});
+});*/
 
 // Performance optimization - reduce particle count on mobile
 function optimizeForMobile() {

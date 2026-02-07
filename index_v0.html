@@ -59,99 +59,6 @@
             box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
         }
         
-        /* Neumorphic Technical Expertise Section */
-        
-        .expertise-dashboard {
-            background: #121212;
-            border-radius: 30px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                        -15px -15px 30px rgba(29, 29, 29, 0.5),
-                        15px 15px 30px rgba(8, 8, 8, 0.8),
-                        0 0 40px rgba(59, 130, 246, 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .skills-radar-container {
-            position: relative;
-            background: #121212;
-            border-radius: 25px;
-            padding: 24px;
-            
-            /* Sunken/Inset appearance */
-            box-shadow: inset 8px 8px 20px rgba(8, 8, 8, 0.6),
-                        inset -8px -8px 20px rgba(29, 29, 29, 0.3),
-                        inset 0 0 30px rgba(0, 0, 0, 0.4);
-            
-            border: 1px solid rgba(59, 130, 246, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .skill-card {
-            position: relative;
-            background: #121212;
-            border-radius: 18px;
-            padding: 24px 16px;
-            text-align: center;
-            
-            /* Raised/Outset appearance */
-            box-shadow: -8px -8px 20px rgba(29, 29, 29, 0.6),
-                        8px 8px 20px rgba(8, 8, 8, 0.8),
-                        0 5px 15px rgba(0, 0, 0, 0.3);
-            
-            border: 1px solid rgba(59, 130, 246, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-        
-        .skill-icon-wrapper {
-            font-size: 3.5rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 80px;
-            filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.2));
-            transition: all 0.3s ease;
-        }
-        
-        .skill-card h3 {
-            font-weight: 600;
-            font-size: 1.125rem;
-            margin-bottom: 8px;
-            color: var(--electric-blue);
-            transition: all 0.3s ease;
-        }
-        
-        .skill-card p {
-            font-size: 0.875rem;
-            color: rgba(156, 163, 175, 0.7);
-            line-height: 1.4;
-        }
-        
-        .skill-card:hover {
-            /* Squish effect on hover */
-            transform: translateY(3px);
-            box-shadow: -8px -8px 20px rgba(29, 29, 29, 0.6),
-                        8px 8px 20px rgba(8, 8, 8, 0.8),
-                        0 2px 8px rgba(0, 0, 0, 0.5),
-                        0 0 30px rgba(59, 130, 246, 0.3),
-                        inset 0 0 20px rgba(59, 130, 246, 0.08);
-            
-            /* Blue aura from underneath */
-            filter: drop-shadow(0 10px 25px rgba(59, 130, 246, 0.25));
-        }
-        
-        .skill-card:hover h3 {
-            color: #60a5fa;
-            text-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
-        }
-        
-        .skill-card:hover .skill-icon-wrapper {
-            filter: drop-shadow(0 6px 15px rgba(59, 130, 246, 0.4));
-            transform: scale(1.05);
-        }
-        
         .skill-icon {
             transition: all 0.3s ease;
         }
@@ -204,58 +111,13 @@
         }
 
         .btn-primary {
-            background: #121212;
-            border: none;
-            box-shadow: -8px -8px 16px var(--nm-light), 8px 8px 16px var(--nm-dark);
+            background: linear-gradient(135deg, var(--electric-blue), var(--cyan));
             transition: all 0.3s ease;
         }
         
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: -8px -8px 16px var(--nm-light), 8px 8px 16px var(--nm-dark);
-        }
-        
-        .btn-primary:active {
-            box-shadow: inset -8px -8px 16px var(--nm-light), inset 8px 8px 16px var(--nm-dark);
-            transform: translateY(0);
-        }
-        
-        .btn-secondary {
-            background: #121212;
-            border: none;
-            box-shadow: -8px -8px 16px var(--nm-light), 8px 8px 16px var(--nm-dark);
-            transition: all 0.3s ease;
-            color: white;
-        }
-        
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: -8px -8px 16px var(--nm-light), 8px 8px 16px var(--nm-dark);
-        }
-        
-        .btn-secondary:active {
-            box-shadow: inset -8px -8px 16px var(--nm-light), inset 8px 8px 16px var(--nm-dark);
-            transform: translateY(0);
-        }
-        
-        .btn-neumorphic {
-            background: #121212;
-            border: none;
-            box-shadow: -8px -8px 16px var(--nm-light), 8px 8px 16px var(--nm-dark);
-            color: var(--electric-blue);
-            text-decoration: none;
-            border-radius: 8px;
-        }
-        
-        .btn-neumorphic:hover {
-            transform: translateY(-2px);
-            box-shadow: -8px -8px 16px var(--nm-light), 8px 8px 16px var(--nm-dark);
-            color: var(--cyan);
-        }
-        
-        .btn-neumorphic:active {
-            box-shadow: inset -8px -8px 16px var(--nm-light), inset 8px 8px 16px var(--nm-dark);
-            transform: translateY(0);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
         }
         
         #p5-canvas {
@@ -276,242 +138,6 @@
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Futuristic Data Interface - Certificate Badge Styles */
-        @keyframes scan-line {
-            0% { top: -5%; opacity: 0; }
-            10% { opacity: 0.6; }
-            50% { top: 50%; opacity: 0.8; }
-            90% { opacity: 0.6; }
-            100% { top: 105%; opacity: 0; }
-        }
-        
-        @keyframes grid-pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-        
-        @keyframes bracket-expand {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
-        }
-        
-        .futuristic-badge-container {
-            position: relative;
-            border-radius: 50%;
-            height: 100%;
-            width: 100%;
-            perspective: 1000px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .neumorphic-pocket {
-            position: relative;
-            border-radius: 50%;
-            background: rgba(18, 18, 18, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 100%;
-            height: 100%;
-            
-            /* Glass morphism effect */
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            
-            /* Electric glow */
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2),
-                        inset 0 0 30px rgba(59, 130, 246, 0.05);
-        }
-        
-        /* Digital grid background pattern */
-        .neumorphic-pocket::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background-image: 
-                linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
-            background-size: 40px 40px;
-            background-position: 0 0;
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 1;
-            animation: grid-pulse 3s ease-in-out infinite;
-        }
-        
-        /* Scanning line animation */
-        .neumorphic-pocket::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 3px;
-            top: 50%;
-            left: 0;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-            border-radius: 50%;
-            animation: scan-line 3s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 2;
-        }
-        
-        /* Corner bracket accent - top-left */
-        .neumorphic-pocket .bracket-tl::before,
-        .neumorphic-pocket .bracket-tl::after {
-            content: '';
-            position: absolute;
-            background: #3b82f6;
-            z-index: 3;
-        }
-        
-        .neumorphic-pocket .bracket-tl::before {
-            width: 20px;
-            height: 2px;
-            top: 12%;
-            left: 12%;
-        }
-        
-        .neumorphic-pocket .bracket-tl::after {
-            width: 2px;
-            height: 20px;
-            top: 12%;
-            left: 12%;
-        }
-        
-        /* Corner bracket accent - top-right */
-        .neumorphic-pocket .bracket-tr::before,
-        .neumorphic-pocket .bracket-tr::after {
-            content: '';
-            position: absolute;
-            background: #3b82f6;
-            z-index: 3;
-        }
-        
-        .neumorphic-pocket .bracket-tr::before {
-            width: 20px;
-            height: 2px;
-            top: 12%;
-            right: 12%;
-        }
-        
-        .neumorphic-pocket .bracket-tr::after {
-            width: 2px;
-            height: 20px;
-            top: 12%;
-            right: 12%;
-        }
-        
-        /* Corner bracket accent - bottom-left */
-        .neumorphic-pocket .bracket-bl::before,
-        .neumorphic-pocket .bracket-bl::after {
-            content: '';
-            position: absolute;
-            background: #3b82f6;
-            z-index: 3;
-        }
-        
-        .neumorphic-pocket .bracket-bl::before {
-            width: 20px;
-            height: 2px;
-            bottom: 12%;
-            left: 12%;
-        }
-        
-        .neumorphic-pocket .bracket-bl::after {
-            width: 2px;
-            height: 20px;
-            bottom: 12%;
-            left: 12%;
-        }
-        
-        /* Corner bracket accent - bottom-right */
-        .neumorphic-pocket .bracket-br::before,
-        .neumorphic-pocket .bracket-br::after {
-            content: '';
-            position: absolute;
-            background: #3b82f6;
-            z-index: 3;
-        }
-        
-        .neumorphic-pocket .bracket-br::before {
-            width: 20px;
-            height: 2px;
-            bottom: 12%;
-            right: 12%;
-        }
-        
-        .neumorphic-pocket .bracket-br::after {
-            width: 2px;
-            height: 20px;
-            bottom: 12%;
-            right: 12%;
-        }
-        
-        .neumorphic-pocket:hover .bracket-tl::before,
-        .neumorphic-pocket:hover .bracket-tl::after,
-        .neumorphic-pocket:hover .bracket-tr::before,
-        .neumorphic-pocket:hover .bracket-tr::after,
-        .neumorphic-pocket:hover .bracket-bl::before,
-        .neumorphic-pocket:hover .bracket-bl::after,
-        .neumorphic-pocket:hover .bracket-br::before,
-        .neumorphic-pocket:hover .bracket-br::after {
-            animation: bracket-expand 0.6s ease-in-out;
-        }
-        
-        .neumorphic-pocket:hover {
-            /* Brightened glass effect */
-            background: rgba(18, 18, 18, 0.9);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.4),
-                        inset 0 0 40px rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.5);
-        }
-        
-        .neumorphic-pocket:hover::before {
-            animation: grid-pulse 1s ease-in-out;
-        }
-        
-        .cert-image-wrapper {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            position: relative;
-            z-index: 3;
-        }
-        
-        .cert-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.4));
-        }
-        
-        /* Status text styling */
-        .cert-status {
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            color: #10b981;
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
-            white-space: nowrap;
-            opacity: 0.9;
-            z-index: 4;
-        }
-
         nav {
             background: rgba(18, 18, 18, 0.85);
             backdrop-filter: blur(10px);
@@ -545,47 +171,32 @@
 
     <nav class="fixed top-0 w-full z-50 bg-black bg-opacity-20 backdrop-blur-md border-b border-gray-800">
     <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex justify-between items-center">
-            <div class="font-display font-bold text-xl gradient-text">Essam Suliman</div>
+    <div class="flex justify-between items-center">
+      <!-- Left logo -->
+      <div class="font-display font-bold text-xl gradient-text">Essam Suliman</div>
 
-            <div class="hidden md:flex space-x-8 ml-8">
-                <a href="index.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Home</a>
-                <a href="about.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">About</a>
-                <a href="projects.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Projects</a>
-                <a href="contact.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Contact</a>
-            </div>
+      <!-- Center navigation links -->
+      <div class="hidden md:flex space-x-8 ml-8">
+        <a href="index.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Home</a>
+        <a href="about.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">About</a>
+        <a href="projects.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Projects</a>
+        <a href="contact.html" style="font-size: 18px;" class="nav-link text-white hover:text-blue-400">Contact</a>
+      </div>
 
-            <div class="hidden md:flex items-center">
-                <a href="Essam_Resume_12_25.pdf" download target="_blank"
-                    class="ml-6 inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold
-                    text-white bg-gradient-to-r from-blue-500/70 to-cyan-400/70
-                    border border-cyan-300/60 shadow-lg shadow-cyan-500/30
-                    hover:from-blue-500 hover:to-cyan-400 hover:shadow-cyan-400/40
-                    transition-all duration-300 backdrop-blur-sm">
-                    <span class="w-2 h-2 bg-emerald-400 rounded-full mr-2 shadow-[0_0_8px_2px_rgba(16,185,129,0.7)] animate-pulse"></span>
-                    Download Resume
-                </a>
-            </div>
-
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-btn" class="text-white focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
+      <!-- Right button -->
+      <div class="hidden md:flex items-center">
+        <a href="Essam_Resume_12_25.pdf" download target="_blank"
+           class="ml-6 inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold
+          text-white bg-gradient-to-r from-blue-500/70 to-cyan-400/70
+          border border-cyan-300/60 shadow-lg shadow-cyan-500/30
+          hover:from-blue-500 hover:to-cyan-400 hover:shadow-cyan-400/40
+          transition-all duration-300 backdrop-blur-sm">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full mr-2 shadow-[0_0_8px_2px_rgba(16,185,129,0.7)] animate-pulse"></span>
+          Download Resume
+        </a>
+      </div>      
     </div>
-
-    <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 border-b border-gray-800">
-        <div class="px-6 py-6 space-y-4 flex flex-col">
-            <a href="index.html" class="text-white text-lg">Home</a>
-            <a href="about.html" class="text-white text-lg">About</a>
-            <a href="projects.html" class="text-white text-lg">Projects</a>
-            <a href="contact.html" class="text-white text-lg">Contact</a>
-            <a href="Essam_Resume_12_25.pdf" download class="text-blue-400 font-bold py-2">Download Resume</a>
-        </div>
-    </div>
+  </div>
 </nav>
 
     <!-- Hero Section -->
@@ -603,7 +214,7 @@
                 <!-- <a href="#projects" class="btn-primary px-8 py-4 rounded-lg font-semibold text-white inline-block">
                     View My Work
                 </a> -->
-                <a href="contact.html" class="btn-secondary px-8 py-4 rounded-lg font-semibold inline-block">
+                <a href="contact.html" class="border-2 border-blue-400 px-8 py-4 rounded-lg font-semibold text-blue-400 hover:bg-blue-400 hover:text-white transition-all duration-300">
                     Get In Touch
                 </a>
             </div>
@@ -617,81 +228,6 @@
         </div>
     </section>
 
-    <!-- Certificate placement -->
-    <section id="certifications" class="py-20 section-fade">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="font-display font-bold text-4xl md:text-5xl mb-6 gradient-text">Professional Certifications</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Verified credentials from industry-leading institutions
-                </p>
-            </div>
-            <!-- 
-           
-                <div class="bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700 flex flex-col items-center text-center card-hover">
-                    <img src="google-advanced-data-analytics-certificate.png" alt="Google Data Analytics" class="w-32 h-32 mb-6 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                    <h3 class="font-display font-bold text-xl mb-2">Google Advanced Data Analytics Certificate</h3>
-                    <p class="text-gray-400 mb-6">Issued by Google • Coursera</p>
-                    <a href="https://www.credly.com/badges/d4e4a186-d5f8-400c-8e84-1d0e27f95854/linked_in_profile" target="_blank" class="text-blue-400 font-semibold hover:text-cyan-400 transition-colors">
-                        Verify Credential →
-                    </a>
-                </div> 
-                <div class="bg-gray-800 bg-opacity-30 rounded-2xl p-8 border border-gray-700 flex flex-col items-center text-center card-hover">
-                    <img src="google-data-analytics-professional-certificate.2.png" alt="Google Data Analytics Professional Certificate" class="w-32 h-32
-                     mb-6 drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">
-                    <h3 class="font-display font-bold text-xl mb-2">Google Data Analytics Professional Certificate</h3>
-                    <p class="text-gray-400 mb-6">Issued by Google • Coursera</p>
-                    <a href="https://www.credly.com/badges/a83fb9b7-d67e-4f98-bcdc-b50b3871fea7/linked_in_profile" target="_blank" class="text-blue-400 font-semibold hover:text-cyan-400 transition-colors">
-                        Verify Credential →
-                    </a>
-                </div>
-                -->
-
-   <div class="flex flex-row justify-center items-center gap-8 md:gap-16 max-w-4xl mx-auto py-12">
-    
-    <!-- First Certificate Badge - Futuristic Data Interface -->
-    <div class="flex-shrink-0 w-40 h-40 md:w-52 md:h-52 relative">
-        <a href="https://www.credly.com/badges/d4e4a186-d5f8-400c-8e84-1d0e27f95854/linked_in_profile" 
-           target="_blank" 
-           class="futuristic-badge-container block w-full h-full">
-            <div class="neumorphic-pocket">
-                <div class="bracket-tl"></div>
-                <div class="bracket-tr"></div>
-                <div class="bracket-bl"></div>
-                <div class="bracket-br"></div>
-                <div class="cert-image-wrapper">
-                    <img src="google-advanced-data-analytics-certificate720px.png" 
-                         alt="Google Advanced Data Analytics Certificate">
-                </div>
-            </div>
-        </a>
-        <div class="cert-status">STATUS: VERIFIED</div>
-    </div>
-
-    <!-- Second Certificate Badge - Futuristic Data Interface -->
-    <div class="flex-shrink-0 w-40 h-40 md:w-52 md:h-52 relative">
-        <a href="https://www.credly.com/badges/a83fb9b7-d67e-4f98-bcdc-b50b3871fea7/linked_in_profile" 
-           target="_blank" 
-           class="futuristic-badge-container block w-full h-full">
-            <div class="neumorphic-pocket">
-                <div class="bracket-tl"></div>
-                <div class="bracket-tr"></div>
-                <div class="bracket-bl"></div>
-                <div class="bracket-br"></div>
-                <div class="cert-image-wrapper">
-                    <img src="google-data-analytics-certificate720px.png" 
-                         alt="Google Data Analytics Professional Certificate">
-                </div>
-            </div>
-        </a>
-        <div class="cert-status">STATUS: VERIFIED</div>
-    </div>
-
-</div>
-                
-        </div>
-    </section>
-
     <!-- Skills Radar Section -->
     <section id="skills" class="py-20 section-fade">
         <div class="max-w-7xl mx-auto px-4">
@@ -702,45 +238,43 @@
                 </p>
             </div>
             
-            <div class="expertise-dashboard">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <!-- Radar Chart - Sunken -->
-                    <div class="skills-radar-container">
-                        <div id="skills-radar" style="height: 450px;"></div>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Radar Chart -->
+                <div class="bg-gray-800 bg-opacity-50 rounded-2xl p-4 md:p-8 backdrop-blur-sm border border-gray-700">
+                    <div id="skills-radar" style="height: 450px;"></div>
+                </div>
+                
+                <!-- Skills Grid -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="skill-icon text-center p-6 bg-gray-800 bg-opacity-30 rounded-xl border border-gray-700">
+                        <div class="text-4xl mb-4">🐍</div>
+                        <h3 class="font-semibold text-lg mb-2">Python</h3>
+                        <p class="text-sm text-gray-400">Pandas, NumPy, SciPy, Matplotlib</p>
                     </div>
-                    
-                    <!-- Skills Grid - Raised Cards -->
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="skill-card">
-                            <div class="skill-icon-wrapper">🐍</div>
-                            <h3>Python</h3>
-                            <p>Pandas, NumPy, SciPy, Matplotlib</p>
-                        </div>
-                        <div class="skill-card">
-                            <div class="skill-icon-wrapper">🗄️</div>
-                            <h3>SQL</h3>
-                            <p>SQL Server, MySQL, PostgreSQL</p>
-                        </div>
-                        <div class="skill-card">
-                            <div class="skill-icon-wrapper">📊</div>
-                            <h3>Tableau</h3>
-                            <p>Dashboard Creation, Data Visualization</p>
-                        </div>
-                        <div class="skill-card">
-                            <div class="skill-icon-wrapper">📈</div>
-                            <h3>Power BI</h3>
-                            <p>Business Intelligence, Reporting</p>
-                        </div>
-                        <div class="skill-card">
-                            <div class="skill-icon-wrapper">📋</div>
-                            <h3>Excel</h3>
-                            <p>VLookup, Pivot Tables, Analytics</p>
-                        </div>
-                        <div class="skill-card">
-                            <div class="skill-icon-wrapper">📊</div>
-                            <h3>R Programming</h3>
-                            <p>dplyr, ggplot, Statistical Analysis</p>
-                        </div>
+                    <div class="skill-icon text-center p-6 bg-gray-800 bg-opacity-30 rounded-xl border border-gray-700">
+                        <div class="text-4xl mb-4">🗄️</div>
+                        <h3 class="font-semibold text-lg mb-2">SQL</h3>
+                        <p class="text-sm text-gray-400">SQL Server, MySQL, PostgreSQL</p>
+                    </div>
+                    <div class="skill-icon text-center p-6 bg-gray-800 bg-opacity-30 rounded-xl border border-gray-700">
+                        <div class="text-4xl mb-4">📊</div>
+                        <h3 class="font-semibold text-lg mb-2">Tableau</h3>
+                        <p class="text-sm text-gray-400">Dashboard Creation, Data Visualization</p>
+                    </div>
+                    <div class="skill-icon text-center p-6 bg-gray-800 bg-opacity-30 rounded-xl border border-gray-700">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h3 class="font-semibold text-lg mb-2">Power BI</h3>
+                        <p class="text-sm text-gray-400">Business Intelligence, Reporting</p>
+                    </div>
+                    <div class="skill-icon text-center p-6 bg-gray-800 bg-opacity-30 rounded-xl border border-gray-700">
+                        <div class="text-4xl mb-4">📋</div>
+                        <h3 class="font-semibold text-lg mb-2">Excel</h3>
+                        <p class="text-sm text-gray-400">VLookup, Pivot Tables, Analytics</p>
+                    </div>
+                    <div class="skill-icon text-center p-6 bg-gray-800 bg-opacity-30 rounded-xl border border-gray-700">
+                        <div class="text-4xl mb-4">📊</div>
+                        <h3 class="font-semibold text-lg mb-2">R Programming</h3>
+                        <p class="text-sm text-gray-400">dplyr, ggplot, Statistical Analysis</p>
                     </div>
                 </div>
             </div>
@@ -816,14 +350,14 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-sm text-gray-400">Nov 2025</div>
-                        <button class="btn-neumorphic px-6 py-3 inline-block font-semibold transition-all duration-300" 
+                        <button class="text-blue-500 hover:text-blue-300 font-medium" 
                         onclick="window.open('https://essam-1048.github.io/Portfolio.github.io/projects.html')" >
                             View in projects →
                         </button>
                     </div>
                     <!-- <div class="flex justify-between items-center">
                         <div class="text-sm text-gray-400">Dec 2024 - Mar 2025</div>
-                        <button class="btn-neumorphic px-6 py-3 inline-block font-semibold transition-all duration-300" 
+                        <button class="text-blue-500 hover:text-blue-300 font-medium" 
                         onclick="window.open('https://essam-1048.github.io/Portfolio.github.io/projects.html')" >
                             View in projects →
                         </button>
@@ -854,7 +388,7 @@
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-sm text-gray-400">Oct 2025</div>
-                        <button class="btn-neumorphic px-6 py-3 inline-block font-semibold transition-all duration-300" 
+                        <button class="text-blue-500 hover:text-blue-300 font-medium" 
                         onclick="window.open('https://essam-1048.github.io/Portfolio.github.io/projects.html')" >
                             View in projects →
                         </button>
@@ -906,7 +440,7 @@
                 <!-- Timeline Items -->
                 <div class="space-y-12">
                     <!-- Current Position -->
-                    <!-- <div class="timeline-item flex items-center">
+                    <div class="timeline-item flex items-center">
                         <div class="w-1/2 pr-8 text-right">
                             <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 backdrop-blur-sm border border-gray-700">
                                 <h3 class="font-display font-bold text-xl mb-2">Personal Assistant (Part-Time)</h3>
@@ -924,7 +458,7 @@
                             <div class="w-3 h-3 bg-white rounded-full"></div>
                         </div>
                         <div class="w-1/2"></div>
-                    </div> -->
+                    </div>
                     
                     <!-- Data Analyst Intern -->
                     <div class="timeline-item flex items-center">
@@ -933,9 +467,9 @@
                             <div class="w-3 h-3 bg-white rounded-full"></div>
                         </div>
                         <div class="w-1/2 pl-8">
-                            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 backdrop-blur-sm border border-purple-600">
+                            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 backdrop-blur-sm border border-gray-700">
                                 <h3 class="font-display font-bold text-xl mb-2">Data Analyst Intern (Remote)</h3>
-                                <p class="text-purple-600 mb-3">Dr Avi Global, Sydney • Dec 2024 - Mar 2025</p>
+                                <p class="text-purple-400 mb-3">Dr Avi Global, Sydney • Dec 2024 - Mar 2025</p>
                                 <p class="text-gray-300 mb-4">
                                     Analyzed large datasets from marketing and AI model outputs. Built performance dashboards and conducted EDA to support business strategy and decision-making.
                                 </p>
@@ -951,9 +485,9 @@
                     <!-- Sales Associate -->
                     <div class="timeline-item flex items-center">
                         <div class="w-1/2 pr-8 text-right">
-                            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 backdrop-blur-sm border border-red-600">
+                            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 backdrop-blur-sm border border-gray-700">
                                 <h3 class="font-display font-bold text-xl mb-2">Sales Associate (Part-Time)</h3>
-                                <p class="text-red-600 mb-3">Thebigbang.shop, Kuala Lumpur • Feb 2024 - Aug 2024</p>
+                                <p class="text-red-400 mb-3">Thebigbang.shop, Kuala Lumpur • Feb 2024 - Aug 2024</p>
                                 <p class="text-gray-300 mb-4">
                                     Improved inventory efficiency by 20% through data analysis. Provided actionable insights that reduced overstock and improved operational efficiency.
                                 </p>
@@ -975,7 +509,7 @@
                             <div class="w-3 h-3 bg-white rounded-full"></div>
                         </div>
                         <div class="w-1/2 pl-8">
-                            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 backdrop-blur-sm border border-yellow-600">
+                            <div class="bg-gray-800 bg-opacity-50 rounded-xl p-6 backdrop-blur-sm border border-gray-700">
                                 <h3 class="font-display font-bold text-xl mb-2">Customer Service Representative (Part-Time)</h3>
                                 <p class="text-yellow-400 mb-3">Telepreformance, Dubai • Oct 2021 - Feb 2022</p>
                                 <p class="text-gray-300 mb-4">
