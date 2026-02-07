@@ -15,11 +15,14 @@
             --cyan: #06b6d4;
             --gold: #f59e0b;
             --light-gray: #f8fafc;
+            --bg-color: #121212;
+            --nm-light: #1d1d1d;
+            --nm-dark: #080808;
         }
         
         body {
             font-family: 'Source Sans Pro', sans-serif;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%);
+            background: #121212;
             color: white;
             overflow-x: hidden;
         }
@@ -76,9 +79,10 @@
         
         .skill-bar {
             height: 8px;
-            background: rgba(59, 130, 246, 0.2);
+            background: #121212;
             border-radius: 4px;
             overflow: hidden;
+            box-shadow: inset 4px 4px 8px var(--nm-dark), inset -4px -4px 8px var(--nm-light);
         }
         
         .skill-progress {
@@ -86,6 +90,12 @@
             background: linear-gradient(90deg, var(--electric-blue), var(--cyan));
             border-radius: 4px;
             transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        nav {
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(29, 29, 29, 0.5);
         }
     </style>
 </head>
@@ -228,10 +238,10 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-semibold">Tableau & Power BI</span>
-                                <span class="text-blue-400">80%</span>
+                                <span class="text-blue-400">90%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="80"></div>
+                                <div class="skill-progress" data-width="90"></div>
                             </div>
                         </div>
                         <div>
@@ -262,10 +272,10 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-semibold">Exploratory Data Analysis (EDA)</span>
-                                <span class="text-green-400">95%</span>
+                                <span class="text-green-400">100%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="95" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                                <div class="skill-progress" data-width="100" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
                             </div>
                         </div>
                         <div>
@@ -289,10 +299,10 @@
                         <div>
                             <div class="flex justify-between mb-2">
                                 <span class="font-semibold">Business Intelligence</span>
-                                <span class="text-green-400">80%</span>
+                                <span class="text-green-400">90%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-width="80" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+                                <div class="skill-progress" data-width="90" style="background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
                             </div>
                         </div>
                         <div>
@@ -485,14 +495,6 @@
             document.querySelectorAll('.section-fade').forEach(el => {
                 observer.observe(el);
             });
-            
-            // Mobile menu functionality
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    alert('Mobile menu functionality would be implemented here');
-                });
-            }
         });
     </script>
 

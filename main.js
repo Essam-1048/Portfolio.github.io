@@ -305,30 +305,20 @@ function initializeScrollAnimations() {
 // Mobile menu functionality
 function initializeMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const nav = document.querySelector('nav');
+    const mobileMenu = document.getElementById('mobile-menu');
     
-    if (mobileMenuBtn) {
+    if (mobileMenuBtn && mobileMenu) {
+        // Toggle menu when button is clicked
         mobileMenuBtn.addEventListener('click', function() {
-            // Create mobile menu if it doesn't exist
-            let mobileMenu = document.getElementById('mobile-menu');
-            if (!mobileMenu) {
-                mobileMenu = document.createElement('div');
-                mobileMenu.id = 'mobile-menu';
-                mobileMenu.className = 'md:hidden bg-gray-900 bg-opacity-95 backdrop-blur-md border-t border-gray-800';
-                mobileMenu.innerHTML = `
-                    <div class="px-6 py-4 space-y-4">
-                        <a href="#home" class="block text-white hover:text-blue-400 py-2">Home</a>
-                        <a href="#skills" class="block text-white hover:text-blue-400 py-2">Skills</a>
-                        <a href="#projects" class="block text-white hover:text-blue-400 py-2">Projects</a>
-                        <a href="#experience" class="block text-white hover:text-blue-400 py-2">Experience</a>
-                        <a href="contact.html" class="block text-white hover:text-blue-400 py-2">Contact</a>
-                    </div>
-                `;
-                nav.appendChild(mobileMenu);
-            }
-            
-            // Toggle menu
             mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close menu when a link inside the menu is clicked
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
         });
     }
 }
